@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
-import { loginInitiate } from '../redux/actions';
+import { loginInitiate, googleSignInInitiate } from '../redux/actions';
 import './Login.css';
 
 const Login = () => {
@@ -32,7 +32,7 @@ const Login = () => {
         setState({email:"",password:""})
     }
     const handleGoogleSignIn = () => {
-        
+        dispatch(googleSignInInitiate());
     }
     const handleFBSignIn = () => {}
     const handleChange =(e) => {

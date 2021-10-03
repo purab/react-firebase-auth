@@ -1,5 +1,12 @@
 # Getting Started with Create React App
 
+For facebook login need to create app in 
+https://developers.facebook.com/apps/?show_reminder=true
+
+for google login you need create app in firebase
+https://console.firebase.google.com/u/0/project/react-firebase-auth-9b4d3/authentication/users
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
