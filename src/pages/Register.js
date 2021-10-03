@@ -25,8 +25,7 @@ const Register = () => {
     const dispatch = useDispatch();
 
     const {email, password,displayName,passwordConfirm} = state;
-    const handleSubmit = (e) => {
-        console.log('ckkkk')
+    const handleSubmit = (e) => {        
         e.preventDefault();
         if(password !== passwordConfirm) {
             return;

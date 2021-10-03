@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
+import { loginInitiate } from '../redux/actions';
 import './Login.css';
 
 const Login = () => {
@@ -8,15 +9,36 @@ const Login = () => {
         email:"",
         password:""
     })
-    const {email, password} = state;
-    const handleSubmit = () => {
 
+    const {currentUser} = useSelector(state => state.user);
+    const {email, password} = state;
+
+    const history = useHistory();
+
+    useEffect(()=> {
+        if(currentUser) {
+            history.push("/")
+        }
+    },[currentUser, history])
+
+    const dispatch = useDispatch();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(!email || !password) {
+            return;
+        }
+        dispatch(loginInitiate(email,password));
+        setState({email:"",password:""})
     }
     const handleGoogleSignIn = () => {
-
+        
     }
     const handleFBSignIn = () => {}
-    const handleChange =() => {}
+    const handleChange =(e) => {
+        let {name,value} = e.target;
+        setState({...state, [name]:value})
+    }
     return (
         <div>
            <div id="logreg-forms">
@@ -44,7 +66,7 @@ const Login = () => {
                name="email" onChange={handleChange} value={email} required />
                <input type="password" id="inputPassword" className="form-control" placeholder="Password" 
                name="password" onChange={handleChange} value={password} required />
-                <button className="btn btn-secondary btn-block" type="submit">
+                <button className="btn btn-secondary btn-block" onClick={handleSubmit}  type="submit">
                       <i className="fas fa-sign-in-alt"></i>  Sign in
                 </button>
                 <hr />
